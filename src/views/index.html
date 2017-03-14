@@ -4,14 +4,81 @@
 <div class="container-fluid mt-3">
 	<div class="row">
 		<div class="col-md-12">
-			<h3>Page Title</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean felis purus, tempus quis dui non, ullamcorper facilisis dolor. Nulla odio tortor, eleifend nec justo non, semper sagittis risus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut porttitor lacus sodales sem scelerisque, cursus sagittis massa posuere. In eget bibendum diam, non blandit ligula. Pellentesque dignissim mattis mauris sed interdum. Praesent mi mauris, auctor et nibh vitae, varius mollis felis. Donec placerat auctor nisl, at gravida orci feugiat a. Quisque ornare erat luctus urna rutrum finibus. Sed auctor, nisi vitae iaculis commodo, augue nunc viverra diam, eu iaculis massa justo non diam.</p>
+			<ul class="nav nav-pills justify-content-center">
+				<li class="nav-item">
+					<a class="nav-link active" data-toggle="tab" href="#search" role="tab">Search</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="tab" href="#docs" role="tab">Docs</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row mt-3">
+		<div class="col-md-8 offset-md-2">
+			<div class="tab-content">
+				<div class="tab-pane active" id="search" role="tabpanel">
+					<div class="row">
+						<div class="col-md-8 offset-md-2">
+							<div class="card text-center">
+								<div class="card-block">
+									<h3>iSearchUFind</h3>
+									<p>Just what you needed, another image search tool!</p>
+									<div class="form-group has-error">
+										<input class="form-control" type="text" name="term" placeholder="Enter search term" required="true">
+									</div>
+									<button class="btn btn-primary btn-block" type="button" name="submit">Search</button>
+									<!-- Homemade seperator -->
+									<div class="row mt-3 mb-2">
+										<div class="col-xs-4 col-md-4"><hr></div>
+										<div class="col-xs-4 col-md-4">or</div>
+										<div class="col-xs-4 col-md-4"><hr></div>
+									</div>
+									<a href="/images/history?sort=asc&limit=10&offset=0" class="text-center">See Recent Searches</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane" id="docs" role="tabpanel">
+					<h3>Documentation</h3>
+					<p>This API provides a set of endpoint to obtain image search results and recent search queries. Please use this API at your own descresion as it is not monitored or rate limited.</p>
+					<hr>
+					<h5>Base URL</h5>
+					{{ base_url }}
+					<hr>
+					<h5>Image Search</h5>
+					<p><code>GET /images?[q=your_term]&[offset=0]&[limit=10]</code></p>
+					<p>Query (q): required</p>
+					<p>Limit (limit): optional</p>
+					<p>Offset (offset): optional</p>
+					<hr>
+					<h5>Image Search History</h5>
+					<p><code>GET /images/history?[offset=0]&[limit=10]&[sort=asc]</code></p>
+					<p>Sort (sort): optional</p>
+					<p>Limit (limit): optional</p>
+					<p>Offset (offset): optional</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
 {% endblock %}
 
 {% block extra_js %}
-<!-- Use this to insert JS into a page -->
-<!-- Important to put JS here so that JQUERY is available to the page -->
+<script type="text/javascript">
+$('button').click(function(){
+	var query = $('input').val();
+
+	if(query) {
+		$(this).html('<i class="fa fa-spinner fa-spin"></i>');
+		return location.href = '/images?q=' + encodeURIComponent(query) + '&sort=asc&limit=10&offset=0';
+	}
+
+	$('input[name=term]').addClass('animated shake').parent().addClass('has-danger');
+	setTimeout(function(){
+		$('input[name=term]').removeClass('animated shake');
+	}, 1000);
+});
+</script>
 {% endblock %}

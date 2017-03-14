@@ -36,7 +36,9 @@
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",
     "jshint": "^2.8.0",
+    "mongojs": "^2.4.0",
     "morgan": "~1.6.1",
+    "node-bing-api": "^3.2.1",
     "node-neat": "^1.7.2",
     "nunjucks": "^2.2.0"
   }

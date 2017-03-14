@@ -1,8 +1,10 @@
 var PageRoutes = function(thing){};
 
 PageRoutes.prototype.index = function(req, res) {
-    console.log(x);
-    res.render('index.html', { page: { title: 'Page Title' } } );
+    res.render('index.html', {
+        page: { title: 'iSearchUFind' } ,
+        base_url: process.env.BASE_URL
+    });
 }
 
 module.exports = PageRoutes;

@@ -24,7 +24,7 @@
 								<div class="card-block">
 									<h3>iSearchUFind</h3>
 									<p>Just what you needed, another image search tool!</p>
-									<div class="form-group has-error">
+									<div class="form-group">
 										<input class="form-control" type="text" name="term" placeholder="Enter search term" required="true">
 									</div>
 									<button class="btn btn-primary btn-block" type="button" name="submit">Search</button>
@@ -77,7 +77,7 @@ $('button').click(function(){
 
 	$('input[name=term]').addClass('animated shake').parent().addClass('has-danger');
 	setTimeout(function(){
-		$('input[name=term]').removeClass('animated shake');
+		$('input[name=term]').removeClass('animated shake').parent().removeClass('has-danger');
 	}, 1000);
 });
 </script>

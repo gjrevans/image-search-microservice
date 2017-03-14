@@ -1,2 +1,4 @@
-MONGO_URL=a_mongo_url_with_username_and_password
-BASE_URL=your_base_url
+MONGO_URL=xxx
+BASE_URL=localhost:3000
+BING_API_KEY=xxx
+NODE_ENV=production
